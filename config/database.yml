@@ -1,0 +1,26 @@
+# Configuración de conexión a PostgreSQL (Contenedor Podman en 127.0.0.1:5432)
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: 127.0.0.1
+  port: 5432
+  username: rails
+  password: secret
+
+# Entorno de desarrollo
+development:
+  <<: *default
+  database: rails_lab_development
+
+# Entorno de pruebas
+test:
+  <<: *default
+  database: rails_lab_test
+
+# Entorno de producción
+production:
+  <<: *default
+  database: rails_lab_production
+  username: <%= ENV["RAILS_LAB_DATABASE_USERNAME"] %>
+  password: <%= ENV["RAILS_LAB_DATABASE_PASSWORD"] %>
