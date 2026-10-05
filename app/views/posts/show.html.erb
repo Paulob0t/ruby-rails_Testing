@@ -1,0 +1,25 @@
+<p style="color: green"><%= notice %></p>
+<p style="color: red"><%= alert %></p>
+
+<%= render @post %>
+
+<div style="margin: 20px 0;">
+  <%= link_to "Editar esta publicación", edit_post_path(@post) %> |
+  <%= link_to "Volver a publicaciones", posts_path %>
+
+  <%= button_to "Eliminar publicación", @post, method: :delete, data: { turbo_confirm: "¿Estás seguro de eliminar esta publicación?" }, style: "margin-top: 10px;" %>
+</div>
+
+<hr style="margin: 30px 0;" />
+
+<section id="comments-section">
+  <h2>Comentarios (<%= @post.comments.count %>)</h2>
+
+  <div id="comments">
+    <%# Renderizado implícito de colección: Rails busca app/views/comments/_comment.html.erb por convención %>
+    <%= render @post.comments %>
+  </div>
+
+  <h3 style="margin-top: 25px;">Agregar un comentario</h3>
+  <%= render "comments/form" %>
+</section>

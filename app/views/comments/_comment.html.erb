@@ -1,0 +1,11 @@
+<%# Parcial para renderizar un comentario individual %>
+<div id="<%= dom_id comment %>" style="border-left: 3px solid #007acc; padding-left: 10px; margin: 15px 0;">
+  <p>
+    <strong><%= comment.author.presence || "Anónimo" %>:</strong>
+    <%= comment.content %>
+  </p>
+  <p style="font-size: 0.85em; color: #666;">
+    Publicado hace <%= time_ago_in_words(comment.created_at) %>
+  </p>
+  <%= button_to "Eliminar comentario", [comment.post, comment], method: :delete, data: { turbo_confirm: "¿Estás seguro de eliminar este comentario?" }, style: "color: red; background: none; border: none; cursor: pointer; padding: 0; text-decoration: underline;" %>
+</div>

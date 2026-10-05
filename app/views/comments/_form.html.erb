@@ -1,0 +1,16 @@
+<%# Formulario anidado para crear un nuevo comentario en un Post %>
+<%= form_with(model: [@post, @post.comments.build], local: true) do |form| %>
+  <div style="margin-bottom: 10px;">
+    <%= form.label :author, "Autor:", style: "display: block; font-weight: bold;" %>
+    <%= form.text_field :author, placeholder: "Tu nombre o apodo (opcional)", style: "width: 100%; max-width: 400px; padding: 6px;" %>
+  </div>
+
+  <div style="margin-bottom: 10px;">
+    <%= form.label :content, "Comentario:", style: "display: block; font-weight: bold;" %>
+    <%= form.text_area :content, rows: 3, placeholder: "Escribe tu comentario...", required: true, style: "width: 100%; max-width: 600px; padding: 6px;" %>
+  </div>
+
+  <div>
+    <%= form.submit "Publicar Comentario", style: "background-color: #007acc; color: white; border: none; padding: 8px 16px; border-radius: 4px; cursor: pointer;" %>
+  </div>
+<% end %>
